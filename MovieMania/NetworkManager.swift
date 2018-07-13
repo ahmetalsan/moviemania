@@ -7,3 +7,15 @@
 //
 
 import Foundation
+import RxSwift
+
+final class NetworkManager {
+    
+    static let sharedInstance = NetworkManager()
+    
+    private init() {}
+    
+    func searchMovie(term: String) {
+        
+    }
+}

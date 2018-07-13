@@ -6,4 +6,11 @@
 //  Copyright © 2018 Veoss. All rights reserved.
 //
 
-import Foundation
+import UIKit
+
+class BaseViewController: UIViewController {
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        
+    }
+}

@@ -9,8 +9,8 @@
 import Foundation
 
 struct K {
-    struct Path {
-        static let Documents = NSSearchPathForDirectoriesInDomains(.DocumentDirectory, .UserDomainMask, true)[0] as String
-        static let Tmp = NSTemporaryDirectory()
+    struct BaseUrl {
+        //http://api.themoviedb.org/3/search/movie?api_key=2696829a81b1b5827d515ff121700838&query=batman&page=1
+        static let Api = "http://api.themoviedb.org/3/"
     }
 }
