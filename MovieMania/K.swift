@@ -9,8 +9,25 @@
 import Foundation
 
 struct K {
-    struct BaseUrl {
-        //http://api.themoviedb.org/3/search/movie?api_key=2696829a81b1b5827d515ff121700838&query=batman&page=1
-        static let Api = "http://api.themoviedb.org/3/"
+    struct ProductionServer {
+        static let baseURL = "http://api.themoviedb.org/3"
+        static let key = "2696829a81b1b5827d515ff121700838"
     }
+    
+    struct APIParameterKey {
+        static let query = "query"
+        static let apiKey = "api_key"
+        static let page = "page"
+    }
+}
+
+enum HTTPHeaderField: String {
+    case authentication = "Authorization"
+    case contentType = "Content-Type"
+    case acceptType = "Accept"
+    case acceptEncoding = "Accept-Encoding"
+}
+
+enum ContentType: String {
+    case json = "application/json"
 }
