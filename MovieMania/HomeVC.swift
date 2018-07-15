@@ -10,33 +10,39 @@ import UIKit
 import RxSwift
 import RxCocoa
 
-class HomeVC: BaseVC, UITableViewDelegate, UITableViewDataSource {
+class HomeVC: BaseVC {
+    
     @IBOutlet weak var searchBar: UISearchBar!
+    @IBOutlet weak var tableView: UITableView!
+    
+    let disposeBag = DisposeBag()
     
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        //TODO: Fetch and set table data
+        tableView.rowHeight = UITableViewAutomaticDimension
+        tableView.estimatedRowHeight = 100
         
-        APIClient.searchMovie(title: "batman", page: 1) { result in
-            switch result {
-            case .success(let movie):
-                print(movie)
-            case .failure(let error):
-                print(error.localizedDescription)
+        let searchResults = searchBar.rx.text.orEmpty
+            .throttle(0.5, scheduler: MainScheduler.instance)
+            .distinctUntilChanged()
+            .flatMapLatest { query -> Observable<[Movie]> in
+                if query.isEmpty {
+                    return .just([])
+                }
+                return APIClient.searchMovie(title: query, page: 1)
+                    .catchErrorJustReturn([])
             }
-        }
+            .observeOn(MainScheduler.instance)
         
+        searchResults
+            .bind(to: tableView.rx.items(cellIdentifier: "MovieCell")) {
+                (index, repository: Movie, cell: MovieCell) in
+                cell.nameLabel.text = repository.title;
+            }
+            .disposed(by: disposeBag)
     }
 
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        return UITableViewCell()
-    }
-    
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 0
-    }
-    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.

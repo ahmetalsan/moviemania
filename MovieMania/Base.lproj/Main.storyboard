@@ -19,9 +19,8 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="Iyk-vo-K2C">
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="Iyk-vo-K2C">
                                 <rect key="frame" x="0.0" y="20" width="375" height="647"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <searchBar key="tableHeaderView" contentMode="redraw" id="bdZ-Ma-LpO">
                                     <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
@@ -84,17 +83,20 @@
                                         </connections>
                                     </tableViewCell>
                                 </prototypes>
-                                <connections>
-                                    <outlet property="dataSource" destination="BYZ-38-t0r" id="Mxj-vR-vjW"/>
-                                    <outlet property="delegate" destination="BYZ-38-t0r" id="Gcq-qI-zwd"/>
-                                </connections>
                             </tableView>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstItem="Iyk-vo-K2C" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="2IF-t2-Mc1"/>
+                            <constraint firstItem="Iyk-vo-K2C" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" id="3yC-gU-rRC"/>
+                            <constraint firstItem="Iyk-vo-K2C" firstAttribute="trailing" secondItem="6Tk-OE-BBY" secondAttribute="trailing" id="C7K-3w-0Pd"/>
+                            <constraint firstItem="Iyk-vo-K2C" firstAttribute="bottom" secondItem="6Tk-OE-BBY" secondAttribute="bottom" id="aOb-6R-FOn"/>
+                        </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
                     <connections>
                         <outlet property="searchBar" destination="bdZ-Ma-LpO" id="8dp-bW-AuR"/>
+                        <outlet property="tableView" destination="Iyk-vo-K2C" id="ZDF-Fh-Xtq"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>

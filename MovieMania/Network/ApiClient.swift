@@ -7,18 +7,24 @@
 //
 
 import Alamofire
+import RxSwift
 
 class APIClient {
-    static func searchMovie(title:String, page:Int, completion:@escaping (Result<[Movie]>)->Void) {
-        Alamofire.request(APIRouter.searchMovie(title: title, page: page))
-            .responseJSONDecodable { (response: DataResponse<Root>) in
-                switch response.result {
-                case .success(let root):
-                    let result = Result<[Movie]>.success(root.results)
-                    completion(result)
-                case .failure(let error):
-                    print(error.localizedDescription)
-                }
+    static func searchMovie(title:String, page:Int) -> Observable<[Movie]> {
+        return Observable<[Movie]>.create { observer in
+            
+            Alamofire.request(APIRouter.searchMovie(title: title, page: page))
+                .responseJSONDecodable { (response: DataResponse<Root>) in
+                
+                    switch response.result {
+                    case .success(let root):
+                        observer.onNext(root.results)
+                    case .failure(let error):
+                        observer.onError(error)
+                    }
+            }
+
+            return Disposables.create()
         }
     }
 }
