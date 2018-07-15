@@ -1,5 +1,5 @@
 //
-//  ViewController.swift
+//  HomeVC.swift
 //  MovieMania
 //
 //  Created by Ahmet Alsan on 14.07.2018.
@@ -10,7 +10,7 @@ import UIKit
 import RxSwift
 import RxCocoa
 
-class ViewController: BaseViewController, UITableViewDelegate, UITableViewDataSource {
+class HomeVC: BaseVC, UITableViewDelegate, UITableViewDataSource {
     @IBOutlet weak var searchBar: UISearchBar!
     
     override func viewDidLoad() {

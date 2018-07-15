@@ -8,14 +8,14 @@
 
 import Foundation
 
-struct MovieModel: Codable {
+struct Movie: Codable {
     let title: String
     let posterPath: String
     let releaseDate: String
     let overview: String
 }
 
-extension MovieModel {
+extension Movie {
     enum CodingKeys: String, CodingKey {
         case title
         case posterPath = "poster_path"

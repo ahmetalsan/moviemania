@@ -1,5 +1,5 @@
 //
-//  BaseViewController.swift
+//  BaseVC.swift
 //  MovieMania
 //
 //  Created by Ahmet Alsan on 14.07.2018.
@@ -8,7 +8,7 @@
 
 import UIKit
 
-class BaseViewController: UIViewController {
+class BaseVC: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         

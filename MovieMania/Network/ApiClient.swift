@@ -9,10 +9,16 @@
 import Alamofire
 
 class APIClient {
-    static func searchMovie(title:String, page:Int, completion:@escaping (Result<MovieModel>)->Void) {
+    static func searchMovie(title:String, page:Int, completion:@escaping (Result<[Movie]>)->Void) {
         Alamofire.request(APIRouter.searchMovie(title: title, page: page))
-            .responseJSONDecodable { (response: DataResponse<MovieModel>) in
-                completion(response.result)
+            .responseJSONDecodable { (response: DataResponse<Root>) in
+                switch response.result {
+                case .success(let root):
+                    let result = Result<[Movie]>.success(root.results)
+                    completion(result)
+                case .failure(let error):
+                    print(error.localizedDescription)
+                }
         }
     }
 }
