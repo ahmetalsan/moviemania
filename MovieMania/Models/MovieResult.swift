@@ -8,7 +8,7 @@
 
 import Foundation
 
-struct Root: Codable {
+struct MovieResult: Codable {
     let results: [Movie]
     
     enum CodingKeys: CodingKey {

@@ -10,11 +10,11 @@ import Alamofire
 import RxSwift
 
 class APIClient {
-    static func searchMovie(title:String, page:Int = 0) -> Observable<[Movie]> {
+    static func searchMovie(title:String, page:Int = 1) -> Observable<[Movie]> {
         return Observable<[Movie]>.create { observer in
             
             Alamofire.request(APIRouter.searchMovie(title: title, page: page))
-                .responseJSONDecodable { (response: DataResponse<Root>) in
+                .responseJSONDecodable { (response: DataResponse<MovieResult>) in
                 
                     switch response.result {
                     case .success(let root):
