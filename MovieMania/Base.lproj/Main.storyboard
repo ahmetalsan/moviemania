@@ -35,27 +35,27 @@
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="99.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Jht-5A-SII">
-                                                    <rect key="frame" x="15" y="19.5" width="60" height="60.5"/>
+                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Jht-5A-SII">
+                                                    <rect key="frame" x="15" y="21" width="60" height="60.5"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="60" id="YTm-k0-cP1"/>
                                                         <constraint firstAttribute="width" constant="60" id="q3u-SN-4rU"/>
                                                     </constraints>
                                                 </imageView>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Movie Name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6Gc-Wn-9Ba">
-                                                    <rect key="frame" x="85" y="19.5" width="260" height="20.5"/>
+                                                    <rect key="frame" x="85" y="21" width="260" height="20.5"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Release Date" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ySk-ob-2m9">
-                                                    <rect key="frame" x="85" y="39" width="260" height="21"/>
+                                                    <rect key="frame" x="85" y="40.5" width="260" height="21"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Full​ ​Movie​ ​Overview" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hsO-Ac-cjx">
-                                                    <rect key="frame" x="85" y="58" width="260" height="21"/>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Full​ ​Movie​ ​Overview" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hsO-Ac-cjx">
+                                                    <rect key="frame" x="85" y="61.5" width="260" height="20.5"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
@@ -65,11 +65,12 @@
                                                 <constraint firstItem="Jht-5A-SII" firstAttribute="leading" secondItem="V7o-r2-KtJ" secondAttribute="leading" constant="15" id="26v-uY-ZXe"/>
                                                 <constraint firstItem="6Gc-Wn-9Ba" firstAttribute="top" secondItem="Jht-5A-SII" secondAttribute="top" id="7Hv-Du-ZQ9"/>
                                                 <constraint firstItem="hsO-Ac-cjx" firstAttribute="trailing" secondItem="ySk-ob-2m9" secondAttribute="trailing" id="92B-BW-t9q"/>
+                                                <constraint firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="hsO-Ac-cjx" secondAttribute="bottom" constant="10" id="9wp-NB-9wB"/>
                                                 <constraint firstItem="ySk-ob-2m9" firstAttribute="top" secondItem="6Gc-Wn-9Ba" secondAttribute="bottom" constant="-1" id="B92-a6-aJy"/>
                                                 <constraint firstItem="ySk-ob-2m9" firstAttribute="trailing" secondItem="6Gc-Wn-9Ba" secondAttribute="trailing" id="EoI-s7-k43"/>
                                                 <constraint firstItem="6Gc-Wn-9Ba" firstAttribute="leading" secondItem="Jht-5A-SII" secondAttribute="trailing" constant="10" id="Fah-yb-Ziq"/>
-                                                <constraint firstItem="Jht-5A-SII" firstAttribute="centerY" secondItem="V7o-r2-KtJ" secondAttribute="centerY" id="KtC-Jt-ubM"/>
-                                                <constraint firstItem="hsO-Ac-cjx" firstAttribute="top" secondItem="ySk-ob-2m9" secondAttribute="bottom" constant="-2" id="Ojf-Rh-Yqe"/>
+                                                <constraint firstItem="hsO-Ac-cjx" firstAttribute="top" secondItem="ySk-ob-2m9" secondAttribute="bottom" id="Ojf-Rh-Yqe"/>
+                                                <constraint firstItem="Jht-5A-SII" firstAttribute="top" secondItem="V7o-r2-KtJ" secondAttribute="topMargin" constant="10" id="R3y-u3-eFP"/>
                                                 <constraint firstAttribute="trailingMargin" secondItem="6Gc-Wn-9Ba" secondAttribute="trailing" constant="15" id="mz2-mU-hqr"/>
                                                 <constraint firstItem="hsO-Ac-cjx" firstAttribute="leading" secondItem="ySk-ob-2m9" secondAttribute="leading" id="y9a-gV-0mN"/>
                                                 <constraint firstItem="ySk-ob-2m9" firstAttribute="leading" secondItem="6Gc-Wn-9Ba" secondAttribute="leading" id="yKx-iW-jin"/>

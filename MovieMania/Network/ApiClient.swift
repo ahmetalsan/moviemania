@@ -10,7 +10,7 @@ import Alamofire
 import RxSwift
 
 class APIClient {
-    static func searchMovie(title:String, page:Int) -> Observable<[Movie]> {
+    static func searchMovie(title:String, page:Int = 0) -> Observable<[Movie]> {
         return Observable<[Movie]>.create { observer in
             
             Alamofire.request(APIRouter.searchMovie(title: title, page: page))

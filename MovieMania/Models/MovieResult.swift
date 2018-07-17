@@ -1,5 +1,5 @@
 //
-//  Root.swift
+//  MovieResult.swift
 //  MovieMania
 //
 //  Created by Ahmet Alsan on 15.07.2018.

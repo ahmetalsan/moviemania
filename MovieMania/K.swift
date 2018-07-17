@@ -12,6 +12,13 @@ struct K {
     struct ProductionServer {
         static let baseURL = "http://api.themoviedb.org/3"
         static let key = "2696829a81b1b5827d515ff121700838"
+        static let posterBaseURL = "http://image.tmdb.org/t/p/w92"
+    }
+    
+    struct DevServer {
+        static let baseURL = "http://api.themoviedb.org/3"
+        static let key = "2696829a81b1b5827d515ff121700838"
+        static let posterBaseURL = "http://image.tmdb.org/t/p/w92"
     }
     
     struct APIParameterKey {

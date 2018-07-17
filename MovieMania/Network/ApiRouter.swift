@@ -10,8 +10,6 @@ import Foundation
 import Alamofire
 
 enum APIRouter: URLRequestConvertible {
-    //http://api.themoviedb.org/3/search/movie?api_key=2696829a81b1b5827d515ff121700838&query=batman&page=1
-    
     case searchMovie(title: String, page: Int)
     
     // MARK: - HTTPMethod
@@ -46,9 +44,9 @@ enum APIRouter: URLRequestConvertible {
     
     // MARK: - URLRequestConvertible
     func asURLRequest() throws -> URLRequest {
-        let url = try K.ProductionServer.baseURL.asURL()
+        let baseURL = try K.ProductionServer.baseURL.asURL()
         
-        var urlRequest = URLRequest(url: url.appendingPathComponent(path))
+        var urlRequest = URLRequest(url: baseURL.appendingPathComponent(path))
         
         // HTTP Method
         urlRequest.httpMethod = method.rawValue
@@ -63,6 +61,14 @@ enum APIRouter: URLRequestConvertible {
         case .searchMovie(_):
             urlRequest = try URLEncoding.default.encode(urlRequest, with: parameters)
         }
+        
+        /*if let parameters = parameters {
+         do {
+         urlRequest.httpBody = try JSONSerialization.data(withJSONObject: parameters, options: [])
+         } catch {
+         throw AFError.parameterEncodingFailed(reason: .jsonEncodingFailed(error: error))
+         }
+         }*/
 
         return urlRequest
     }

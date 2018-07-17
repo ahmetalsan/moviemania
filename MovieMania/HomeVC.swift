@@ -9,6 +9,8 @@
 import UIKit
 import RxSwift
 import RxCocoa
+import SDWebImage
+import Foundation
 
 class HomeVC: BaseVC {
     
@@ -16,38 +18,41 @@ class HomeVC: BaseVC {
     @IBOutlet weak var tableView: UITableView!
     
     let disposeBag = DisposeBag()
+    let searchText = Variable<String>("")
     
     override func viewDidLoad() {
         super.viewDidLoad()
 
         tableView.rowHeight = UITableViewAutomaticDimension
         tableView.estimatedRowHeight = 100
-        
-        let searchResults = searchBar.rx.text.orEmpty
-            .throttle(0.5, scheduler: MainScheduler.instance)
-            .distinctUntilChanged()
-            .flatMapLatest { query -> Observable<[Movie]> in
-                if query.isEmpty {
-                    return .just([])
-                }
-                return APIClient.searchMovie(title: query, page: 1)
-                    .catchErrorJustReturn([])
+
+        let _ = searchBar.rx.searchButtonClicked.asObservable().subscribe(onNext: { [weak self] in
+            if let weakSelf = self, let text = weakSelf.searchBar.text {
+                weakSelf.searchText.value = text
             }
-            .observeOn(MainScheduler.instance)
+        })
+        
+        let searchResults = searchText.asObservable().flatMapLatest { query -> Observable<[Movie]> in
+            if query.isEmpty {
+                return .just([])
+            }
+            
+            return APIClient.searchMovie(title: query).catchErrorJustReturn([])
+        }
+        .observeOn(MainScheduler.instance)
         
         searchResults
             .bind(to: tableView.rx.items(cellIdentifier: "MovieCell")) {
                 (index, repository: Movie, cell: MovieCell) in
-                cell.nameLabel.text = repository.title;
+                cell.nameLabel.text = repository.title
+                cell.overviewLabel.text = repository.overview
+                cell.releaseDateLabel.text = repository.releaseDate
+                
+                let imagePath = K.ProductionServer.posterBaseURL + repository.posterPath
+                let imageURL = URL(string: imagePath)
+                cell.posterImageView.sd_setImage(with: imageURL, placeholderImage: UIImage(named: "placeholder"))
             }
             .disposed(by: disposeBag)
     }
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
-    
-
 }
 
