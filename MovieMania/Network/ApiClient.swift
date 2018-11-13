@@ -13,7 +13,7 @@ class APIClient {
     static func searchMovie(title:String, page:Int = 1) -> Observable<[Movie]> {
         return Observable<[Movie]>.create { observer in
             
-            Alamofire.request(APIRouter.searchMovie(title: title, page: page))
+            AF.request(APIRouter.searchMovie(title: title, page: page))
                 .responseJSONDecodable { (response: DataResponse<MovieResult>) in
                 
                     switch response.result {

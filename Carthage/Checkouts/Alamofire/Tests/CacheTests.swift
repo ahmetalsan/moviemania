@@ -71,7 +71,7 @@ class CacheTestCase: BaseTestCase {
     // MARK: - Properties
 
     var urlCache: URLCache!
-    var manager: SessionManager!
+    var manager: Session!
 
     let urlString = "https://httpbin.org/response-headers"
     let requestTimeout: TimeInterval = 30
@@ -94,14 +94,14 @@ class CacheTestCase: BaseTestCase {
         manager = {
             let configuration: URLSessionConfiguration = {
                 let configuration = URLSessionConfiguration.default
-                configuration.httpAdditionalHeaders = SessionManager.defaultHTTPHeaders
+                configuration.httpAdditionalHeaders = HTTPHeaders.defaultHTTPHeaders
                 configuration.requestCachePolicy = .useProtocolCachePolicy
                 configuration.urlCache = urlCache
 
                 return configuration
             }()
 
-            let manager = SessionManager(configuration: configuration)
+            let manager = Session(configuration: configuration)
 
             return manager
         }()
@@ -150,16 +150,16 @@ class CacheTestCase: BaseTestCase {
         }
 
         // Wait for all requests to complete
-        _ = dispatchGroup.wait(timeout: DispatchTime.now() + Double(Int64(30.0 * Float(NSEC_PER_SEC))) / Double(NSEC_PER_SEC))
+        _ = dispatchGroup.wait(timeout: .now() + 30)
 
-        // Pause for 2 additional seconds to ensure all timestamps will be different
+        // Pause for 1 additional second to ensure all timestamps will be different
         dispatchGroup.enter()
-        serialQueue.asyncAfter(deadline: DispatchTime.now() + Double(Int64(2.0 * Float(NSEC_PER_SEC))) / Double(NSEC_PER_SEC)) {
+        serialQueue.asyncAfter(deadline: .now() + 1) {
             dispatchGroup.leave()
         }
 
-        // Wait for our 2 second pause to complete
-        _ = dispatchGroup.wait(timeout: DispatchTime.now() + Double(Int64(10.0 * Float(NSEC_PER_SEC))) / Double(NSEC_PER_SEC))
+        // Wait for our 1 second pause to complete
+        _ = dispatchGroup.wait(timeout: .now() + 1.25)
     }
 
     // MARK: - Request Helper Methods
@@ -182,7 +182,7 @@ class CacheTestCase: BaseTestCase {
     func startRequest(
         cacheControl: String,
         cachePolicy: URLRequest.CachePolicy = .useProtocolCachePolicy,
-        queue: DispatchQueue = DispatchQueue.main,
+        queue: DispatchQueue = .main,
         completion: @escaping (URLRequest?, HTTPURLResponse?) -> Void)
         -> URLRequest
     {
